@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartCity: Disaster Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #3e77d3, #15abc2);
+            color: white;
+            line-height: 1.6;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        nav {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 1rem 0;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        header {
+            padding: 2rem 0;
+            text-align: center;
+        }
+        h1, h2 {
+            margin-bottom: 1rem;
+        }
+        .disaster-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .disaster-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .disaster-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .disaster-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .btn {
+            background-color: #dd754c;
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1rem;
+            margin-top: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #6acb24;
+        }
+        #alert-system {
+            background-color: rgba(255, 0, 0, 0.1);
+            border: 2px solid rgba(255, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        footer {
+            background-color: #99b2f7;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container nav-container">
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="#about">About</a>
+                <a href="#features">Features</a>
+                <a href="#preparedness">Preparedness</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <h1>SmartCity: Disaster Management System</h1>
+            <p>Keeping our community safe with smart technology and instant notifications.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="alert-system">
+            <h2>Current Alert Status: Normal</h2>
+            <p>No immediate threats detected. Stay prepared and stay safe!</p>
+        </section>
+
+        <section id="about">
+            <h2>About Disaster Management</h2>
+            <p>Our Smart Disaster Management system uses advanced technology to monitor potential threats, provide instant notifications, and guide our community through emergency situations. We aim to keep everyone safe and well-informed during natural disasters like floods and earthquakes.</p>
+        </section>
+
+        <section id="features">
+            <h2>Key Features</h2>
+            <div class="disaster-grid">
+                <div class="disaster-card">
+                    <div class="disaster-icon">🚨</div>
+                    <h3>Early Warning System</h3>
+                    <p>Receive instant alerts about potential disasters through multiple channels.</p>
+                </div>
+                <div class="disaster-card">
+                    <div class="disaster-icon">🗺</div>
+                    <h3>Interactive Maps</h3>
+                    <p>Access real-time maps showing safe zones, evacuation routes, and shelter locations.</p>
+                </div>
+                <div class="disaster-card">
+                    <div class="disaster-icon">🤖</div>
+                    <h3>AI-Powered Predictions</h3>
+                    <p>Utilize artificial intelligence to predict and prepare for potential disasters.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="preparedness">
+            <h2>Disaster Preparedness</h2>
+            <p>Being prepared is key to staying safe during a disaster. Here are some steps you can take:</p>
+            <ul>
+                <li>Create an emergency kit with essential supplies</li>
+                <li>Develop a family communication plan</li>
+                <li>Know your evacuation routes and nearest shelters</li>
+                <li>Stay informed about potential risks in your area</li>
+                <li>Participate in community disaster preparedness drills</li>
+            </ul>
+            <button class="btn" id="download-guide">Download Preparedness Guide</button>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Emergency Services</h2>
+            <p>In case of an emergency, contact our 24/7 helpline:</p>
+            <h3>Emergency Hotline: 911</h3>
+            <button class="btn" id="emergency-call">Call Emergency Services</button>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 SmartCity Initiative. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const downloadGuideBtn = document.getElementById('download-guide');
+            const emergencyCallBtn = document.getElementById('emergency-call');
+
+            downloadGuideBtn.addEventListener('click', function() {
+                // In a real application, this would trigger a download of a PDF guide
+                alert('Downloading Disaster Preparedness Guide...');
+            });
+
+            emergencyCallBtn.addEventListener('click', function() {
+                // In a real application, this could open the phone app with the emergency number pre-dialed
+                alert('Initiating emergency call. In a real emergency, please dial 911 directly.');
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Simulated alert system (for demonstration purposes)
+            function updateAlertStatus() {
+                const alertSystem = document.getElementById('alert-system');
+                const statuses = ['Normal', 'Advisory', 'Watch', 'Warning'];
+                const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
+                
+                alertSystem.innerHTML = `
+                    <h2>Current Alert Status: ${randomStatus}</h2>
+                    <p>${getAlertMessage(randomStatus)}</p>
+                `;
+
+                alertSystem.style.backgroundColor = getAlertColor(randomStatus);
+            }
+
+            function getAlertMessage(status) {
+                switch(status) {
+                    case 'Normal':
+                        return 'No immediate threats detected. Stay prepared and stay safe!';
+                    case 'Advisory':
+                        return 'Potential for severe weather. Stay informed and be prepared.';
+                    case 'Watch':
+                        return 'Conditions are favorable for severe weather. Review your emergency plans.';
+                    case 'Warning':
+                        return 'Severe weather is imminent or occurring. Take immediate safety precautions!';
+                    default:
+                        return 'Stay alert and follow official instructions.';
+                }
+            }
+
+            function getAlertColor(status) {
+                switch(status) {
+                    case 'Normal':
+                        return 'rgba(0, 255, 0, 0.1)';
+                    case 'Advisory':
+                        return 'rgba(255, 255, 0, 0.1)';
+                    case 'Watch':
+                        return 'rgba(255, 165, 0, 0.1)';
+                    case 'Warning':
+                        return 'rgba(255, 0, 0, 0.1)';
+                    default:
+                        return 'rgba(255, 255, 255, 0.1)';
+                }
+            }
+
+            // Update alert status every 10 seconds (for demonstration)
+            setInterval(updateAlertStatus, 10000);
+        });
+    </script>
+</body>
+</html>

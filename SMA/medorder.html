@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartCity: Medicine Ordering</title>
+    <style>
+        :root {
+            --primary-color: #48b34b;
+            --secondary-color: #3da642;
+            --accent-color: #ff9800;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        main {
+            padding: 2rem 0;
+        }
+        h1, h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .search-bar {
+            display: flex;
+            margin-bottom: 2rem;
+        }
+        .search-bar input {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+        }
+        .search-bar button {
+            padding: 10px 20px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .search-bar button:hover {
+            background-color: #e68a00;
+        }
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .category {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .category:hover {
+            transform: translateY(-5px);
+        }
+        .category img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 0.5rem;
+        }
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        .product {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .product img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+        .product h3 {
+            margin-bottom: 0.5rem;
+        }
+        .product p {
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+        #cart {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: white;
+            padding: 10px;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+        #cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">SmartCity Pharmacy</div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>Order Medicines Online</h1>
+        <p>Easily order prescriptions and over-the-counter medicines from the comfort of your home.</p>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Search for medicines...">
+            <button>Search</button>
+        </div>
+
+        <h2>Categories</h2>
+        <div class="categories">
+            <div class="category">
+                <img src="../img/med.jpeg" alt="Prescription">
+                <h3>Prescription</h3>
+            </div>
+            <div class="category">
+                <img src="../img/capsule.jpeg" alt="Over-the-Counter">
+                <h3>Over-the-Counter</h3>
+            </div>
+            <div class="category">
+                <img src="../img/30-lycopene-multivitamins-minerals-softgel-capsules-3x10-multi-original-imagsfzng2ycpygj.webp" alt="Vitamins">
+                <h3>Vitamins & Supplements</h3>
+            </div>
+            <div class="category">
+                <img src="../img/first-aid-label-sign-on-white-background-free-vector.jpg" alt="First Aid">
+                <h3>First Aid</h3>
+            </div>
+        </div>
+
+        <h2>Featured Products</h2>
+        <div class="products">
+            <div class="product">
+                <img src="../img/calpol-500-mg-paracetamol-tablet-856.webp" alt="Medicine 1">
+                <h3>Medicine 1</h3>
+                <p>$9.99</p>
+                <a href="#" class="btn add-to-cart">Add to Cart</a>
+            </div>
+            <div class="product">
+                <img src="../img/medicine1.jpg" alt="Medicine 2">
+                <h3>Medicine 2</h3>
+                <p>$14.99</p>
+                <a href="#" class="btn add-to-cart">Add to Cart</a>
+            </div>
+            <div class="product">
+                <img src="../img/tab.jpg" alt="Medicine 3">
+                <h3>Medicine 3</h3>
+                <p>$19.99</p>
+                <a href="#" class="btn add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+    </main>
+
+    <div id="cart">
+        🛒
+        <span id="cart-count">0</span>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            const cartCount = document.getElementById('cart-count');
+            let count = 0;
+
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    count++;
+                    cartCount.textContent = count;
+                    alert('Item added to cart!');
+                });
+            });
+
+            const searchButton = document.querySelector('.search-bar button');
+            searchButton.addEventListener('click', function() {
+                const searchTerm = document.querySelector('.search-bar input').value;
+                alert('Searching for: ${searchTerm}');
+            });
+
+            const categories = document.querySelectorAll('.category');
+            categories.forEach(category => {
+                category.addEventListener('click', function() {
+                    const categoryName = this.querySelector('h3').textContent;
+                    alert('You clicked on the ${categoryName} category');
+                });
+            });
+
+            const cart = document.getElementById('cart');
+            cart.addEventListener('click', function() {
+                alert('View Cart functionality coming soon!');
+            });
+        });
+    </script>
+</body>
+</html>

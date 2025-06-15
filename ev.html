@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartCity: EV Charging Station</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #2ab857, #43b6e3);
+            color: #121212;
+            line-height: 1.6;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: rgba(234, 241, 234, 0.904);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #16a085;
+        }
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            margin-left: 1rem;
+        }
+        h1, h2 {
+            color: #096538;
+        }
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+            background: rgba(247, 249, 247, 0.516);
+            margin-bottom: 2rem;
+        }
+        .station-status {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .status-item {
+            background-color: #f0f0f0;
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .status-item.available {
+            background-color: #e6ffe6;
+        }
+        .status-item.occupied {
+            background-color: #f07373;
+        }
+        .booking-form {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        input, select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .cta-button {
+            background-color: #32b889;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #6ad498;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 3rem;
+        }
+        #reminderModal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: #0c0c0c;
+        }
+        .status-item-available{
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">SmartCity EV Charging</div>
+            <!-- <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Locations</a>
+                <a href="#">Pricing</a> 
+                <a href="#">Support</a>
+            </div> -->
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1>EV Charging Station</h1>
+            <p>Fast, convenient, and smart charging for your electric vehicle</p>
+        </section>
+
+        <section class="station-status">
+            <h2>Live Station Status</h2>
+            <div class="status-grid">
+                <button><a style="text-decoration: none; color: black;" href="EV/livestation.html"><div class="status-item-available">
+                    <h3>Station 1</h3>
+                    <p>Available</p></a>
+                </div></button>
+
+                <button><div class="status-item occupied">
+                    <h3>Station 2</h3>
+                    <p>Occupied</p>
+                </div></button>
+
+                <button><a style="text-decoration: none; color: black;" href="EV/livestation.html"><div class="status-item-available">
+                    <h3>Station 3</h3>
+                    <p>Available</p></a>
+                </div></button>
+
+                <button><a style="text-decoration: none; color: black;" href="EV/livestation.html"><div class="status-item-available">
+                    <h3>Station 4</h3>
+                    <p>Available</p></a>
+                </div></button>
+            </div>
+        </section>
+
+        <section class="booking-form">
+            <h2>Book a Charging Slot</h2>
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="station">Select Station:</label>
+                    <select id="station">
+                        <option value="">Choose a station</option>
+                        <option value="1">Station 1</option>
+                        <option value="3">Station 3</option>
+                        <option value="4">Station 4</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="duration">Charging Duration (hours):</label>
+                    <input type="number" id="duration" min="1" max="4">
+                </div>
+                <div class="form-group">
+                    <label for="vehicle">Vehicle Registration:</label>
+                    <input type="text" id="vehicle" >
+                </div>
+                <!-- <a href="EV/livestation.html"><button class="cta-button">Book and Pay</button></a> -->
+                <a href="./EV/book.html"><button class="cta-button"> Book and Pay</button></a>
+                
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 SmartCity EV Charging Station. All rights reserved.</p>
+    </footer>
+
+    <div id="reminderModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Charging Reminder</h2>
+            <p>Your charging session is about to end. Please disconnect your vehicle in the next 10 minutes to avoid additional charges.</p>
+            <button id="acknowledgeBtn" class="cta-button">I'll disconnect now</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const bookingForm = document.getElementById('bookingForm');
+            const reminderModal = document.getElementById('reminderModal');
+            const closeBtn = document.getElementsByClassName('close')[0];
+            const acknowledgeBtn = document.getElementById('acknowledgeBtn');
+
+            bookingForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const station = document.getElementById('station').value;
+                const duration = document.getElementById('duration').value;
+                const vehicle = document.getElementById('vehicle').value;
+
+                // Simulating payment process
+                alert('Booking confirmed for Station ${station} for ${duration} hours. Payment processed for vehicle ${vehicle}.');
+
+                // Set a timer for the reminder (in this example, it's set to 10 seconds instead of actual charging duration)
+                setTimeout(() => {
+                    reminderModal.style.display = 'block';
+                }, 10000);
+
+                // Update station status
+                const stationElement = document.querySelector(.status-item:nth-child(${station}));
+                stationElement.classList.remove('available');
+                stationElement.classList.add('occupied');
+                stationElement.querySelector('p').textContent = 'Occupied';
+
+                // Reset form
+                bookingForm.reset();
+            });
+
+            closeBtn.onclick = function() {
+                reminderModal.style.display = 'none';
+            }
+
+            acknowledgeBtn.onclick = function() {
+                reminderModal.style.display = 'none';
+                alert('Thank you for disconnecting your vehicle promptly!');
+            }
+
+            window.onclick = function(event) {
+                if (event.target == reminderModal) {
+                    reminderModal.style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

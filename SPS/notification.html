@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartCity: Parking Notifications</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #3a92d5 0%, #8ed7f2 100%);
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 1rem 0;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ffd700;
+        }
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        .feature-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 1rem;
+            width: calc(33.333% - 2rem);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .cta {
+            text-align: center;
+            padding: 3rem 0;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #ffd700;
+            color: #333;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #ffed4a;
+            transform: scale(1.05);
+        }
+        footer {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #ffffff;
+            text-align: center;
+            padding: 1rem 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        @media (max-width: 768px) {
+            .feature-card {
+                width: calc(50% - 2rem);
+            }
+        }
+        @media (max-width: 480px) {
+            .feature-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#cta">Get Started</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>Never Overstay Your Parking Again</h1>
+                <p>Receive timely alerts when your parking time is about to expire.</p>
+            </div>
+        </section>
+
+        <section id="features" class="features container">
+            <div class="feature-card">
+                <div class="feature-icon">⏰</div>
+                <h2>Timely Reminders</h2>
+                <p>Get notifications 15 minutes before your parking expires, giving you ample time to extend or move your vehicle.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h2>Multi-platform Alerts</h2>
+                <p>Receive notifications on your smartphone, smartwatch, or via SMS - choose what works best for you.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔔</div>
+                <h2>Customizable Alerts</h2>
+                <p>Set up multiple reminders and customize alert times according to your preferences.</p>
+            </div>
+        </section>
+
+        <section id="cta" class="cta">
+            <div class="container">
+                <h2>Start Using Smart Parking Notifications Today</h2>
+                <p>Download our app and never worry about parking tickets again!</p>
+                <a href="#" class="btn">Download Now</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 SmartCity Parking. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Add a simple animation to the CTA button
+            const ctaButton = document.querySelector('.btn');
+            ctaButton.addEventListener('mouseover', function() {
+                this.style.transform = 'scale(1.1)';
+            });
+            ctaButton.addEventListener('mouseout', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

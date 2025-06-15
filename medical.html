@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartCity: Smart Medical Assistant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #2d9dd5, #7cb7ef);
+            color: #151515;
+            line-height: 1.6;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: rgba(253, 249, 249, 0.9);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #209ae5;
+        }
+        .nav-links a {
+            color: #0d0d0d;
+            text-decoration: none;
+            margin-left: 1rem;
+        }
+        h1, h2 {
+            color: #e34141;
+        }
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+            background: rgba(246, 240, 240, 0.471);
+            margin-bottom: 2rem;
+        }
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .service-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .cta-button {
+            background-color: #4facfe;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #3d8bfe;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 3rem;
+        }
+        #aiAssistant {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4facfe;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        #aiAssistant:hover {
+            transform: scale(1.1);
+        }
+        #chatModal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .chat-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 8px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: #000;
+        }
+        #chatMessages {
+            height: 300px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        #userInput {
+            width: 80%;
+            padding: 10px;
+            margin-right: 10px;
+        }
+        #sendMessage {
+            padding: 10px;
+            background-color: #4facfe;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">SmartCity Medical</div>
+            <div class="nav-links">
+                <!-- <a href="#">Home</a>
+                <a href="#">Services</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a> -->
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1>Smart Medical Assistant</h1>
+            <p>Your AI-powered healthcare companion</p>
+        </section>
+
+        <section class="services">
+            <div class="service-card">
+                <div class="service-icon">📅</div>
+                <h3>Appointment Booking</h3>
+                <p>Schedule appointments with doctors instantly using AI</p>
+                <a href="SMA/appointment.html"><button class="cta-button">Book Now</button></a>
+                
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🚑</div>
+                <h3>Emergency Services</h3>
+                <p>One-tap ambulance calling with smart location tracking</p>
+                <a href="SMA/emergency.html"><button class="cta-button">Call Ambulance</button></a>
+                
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💊</div>
+                <h3>Medicine Ordering</h3>
+                <p>Order prescriptions and over-the-counter medicines easily</p>
+                <a href="SMA/medorder.html"><button class="cta-button">Order Medicines</button></a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🩺</div>
+                <h3>Health Monitoring</h3>
+                <p>Track your vital signs and get AI-powered health insights</p>
+                <a href="SMA/healthmonitor.html"><button class="cta-button">Start Monitoring</button></a>
+                
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 SmartCity Medical Assistant. All rights reserved.</p>
+    </footer>
+
+    <div id="aiAssistant">AI</div>
+
+    <div id="chatModal" class="modal">
+        <div class="chat-content">
+            <span class="close">&times;</span>
+            <h2>AI Medical Assistant</h2>
+            <div id="chatMessages"></div>
+            <input type="text" id="userInput" placeholder="Type your message...">
+            <button id="sendMessage">Send</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const aiAssistant = document.getElementById('aiAssistant');
+            const chatModal = document.getElementById('chatModal');
+            const closeBtn = document.getElementsByClassName('close')[0];
+            const sendButton = document.getElementById('sendMessage');
+            const userInput = document.getElementById('userInput');
+            const chatMessages = document.getElementById('chatMessages');
+
+            aiAssistant.onclick = function() {
+                chatModal.style.display = "block";
+                chatMessages.innerHTML += '<p><strong>AI:</strong> Hello! How can I assist you with your medical needs today?</p>';
+            }
+
+            closeBtn.onclick = function() {
+                chatModal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == chatModal) {
+                    chatModal.style.display = "none";
+                }
+            }
+
+            sendButton.onclick = sendMessage;
+            userInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            function sendMessage() {
+                const message = userInput.value;
+                if (message.trim() !== '') {
+                    chatMessages.innerHTML += <p><strong>You:</strong> ${message}</p>;
+                    userInput.value = '';
+                    
+                    // Simulated AI response
+                    setTimeout(() => {
+                        let response = "I'm sorry, I didn't understand that. Could you please rephrase your question?";
+                        if (message.toLowerCase().includes('appointment')) {
+                            response = "Certainly! I can help you book an appointment. What kind of doctor would you like to see?";
+                        } else if (message.toLowerCase().includes('ambulance')) {
+                            response = "I understand this is an emergency. I'm dispatching an ambulance to your location immediately. Please stay calm and on the line.";
+                        } else if (message.toLowerCase().includes('medicine')) {
+                            response = "I'd be happy to help you order medicine. Could you please provide the name of the medication or upload a picture of your prescription?";
+                        }
+                        chatMessages.innerHTML += <p><strong>AI:</strong> ${response}</p>;
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    }, 1000);
+                }
+            }
+
+            const ctaButtons = document.querySelectorAll('.cta-button');
+            ctaButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const service = this.parentElement.querySelector('h3').textContent;
+                    alert('You have selected the ${service} service. This feature is coming soon!');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

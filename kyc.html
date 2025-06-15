@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Know Your City: Discover the Best of SmartCity</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: #3b82f6;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+        }
+        nav {
+            background-color: #2563eb;
+            padding: 0.5rem 0;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 10px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .search-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .search-bar {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .filter-options {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .filter-options select {
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .results-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .place-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .place-card:hover {
+            transform: translateY(-5px);
+        }
+        .place-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .place-card h3 {
+            margin: 0 0 10px 0;
+        }
+        .place-card p {
+            margin: 0;
+            color: #666;
+        }
+        .rating {
+            color: #f59e0b;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Know Your City: Discover the Best of SmartCity</h1>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#" id="navRestaurants">Restaurants</a></li>
+            <li><a href="#" id="navMalls">Malls</a></li>
+            <li><a href="#" id="navAttractions">Attractions</a></li>
+            <li><a href="#" id="navTouristPlaces">Tourist Places</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div class="search-container">
+            <input type="text" id="searchBar" class="search-bar" placeholder="Search for places...">
+            <div class="filter-options">
+                <select id="sortBy">
+                    <option value="rating">Sort by Rating</option>
+                    <option value="popularity">Sort by Popularity</option>
+                </select>
+                <select id="filterBy">
+                    <option value="all">All Categories</option>
+                    <option value="restaurants">Restaurants</option>
+                    <option value="malls">Malls</option>
+                    <option value="attractions">Attractions</option>
+                    <option value="tourist">Tourist Places</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="resultsContainer" class="results-container">
+            <!-- Results will be dynamically added here -->
+        </div>
+    </main>
+
+    <script>
+        const places = [
+            { name: "Hotel Land Mark", type: "restaurants", rating: 4.8, image: "img/res.jpg", description: "Fine dining with a view" },
+            { name: "Z Square Mall", type: "malls", rating: 4.5, image: "img/zsquare1.jpg", description: "Shopping paradise with over 200 stores" },
+            { name: "Science World", type: "attractions", rating: 4.7, image: "img/mus.jpg", description: "Explore the city's rich history" },
+            { name: "Motijheel Park", type: "tourist", rating: 4.6, image: "img/park2.jpg", description: "Beautiful park with scenic views" },
+            { name: "Samocha Café", type: "restaurants", rating: 4.4, image: "img/cafe.jpg", description: "Coffee and coding go hand in hand" },
+            { name: "Blue World", type: "attractions", rating: 4.9, image: "img/advan.jpg", description: "Thrilling rides and family fun" },
+            { name: "Heritage Square", type: "tourist", rating: 4.3, image: "img/heritage.jpg", description: "Historic district with charming architecture" },
+            { name: "Kake Di Hatti", type: "restaurants", rating: 4.7, image: "img/res2.jpg", description: "International cuisine fusion" },
+            { name: "Reliance Mall", type: "malls", rating: 4.2, image: "img/mall.jpg", description: "Eco-friendly shopping center" },
+        ];
+
+        function displayPlaces(filteredPlaces) {
+            const resultsContainer = document.getElementById('resultsContainer');
+            resultsContainer.innerHTML = '';
+
+            filteredPlaces.forEach(place => {
+                const placeCard = document.createElement('div');
+                placeCard.className = 'place-card';
+                placeCard.innerHTML = `
+                    <img src="${place.image}" alt="${place.name}">
+                    <h3>${place.name}</h3>
+                    <p>${place.description}</p>
+                    <p class="rating">Rating: ${place.rating}/5</p>
+                `;
+                resultsContainer.appendChild(placeCard);
+            });
+        }
+
+        function filterAndSortPlaces() {
+            const searchTerm = document.getElementById('searchBar').value.toLowerCase();
+            const sortBy = document.getElementById('sortBy').value;
+            const filterBy = document.getElementById('filterBy').value;
+
+            let filteredPlaces = places.filter(place => 
+                place.name.toLowerCase().includes(searchTerm) ||
+                place.description.toLowerCase().includes(searchTerm)
+            );
+
+            if (filterBy !== 'all') {
+                filteredPlaces = filteredPlaces.filter(place => place.type === filterBy);
+            }
+
+            filteredPlaces.sort((a, b) => {
+                if (sortBy === 'rating') {
+                    return b.rating - a.rating;
+                } else {
+                    // For simplicity, we're using the rating as a proxy for popularity
+                    return b.rating - a.rating;
+                }
+            });
+
+            displayPlaces(filteredPlaces);
+        }
+
+        document.getElementById('searchBar').addEventListener('input', filterAndSortPlaces);
+        document.getElementById('sortBy').addEventListener('change', filterAndSortPlaces);
+        document.getElementById('filterBy').addEventListener('change', filterAndSortPlaces);
+
+        document.querySelectorAll('nav a').forEach(navLink => {
+            navLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                const category = this.id.replace('nav', '').toLowerCase();
+                document.getElementById('filterBy').value = category === 'touristplaces' ? 'tourist' : category;
+                filterAndSortPlaces();
+            });
+        });
+
+        // Initial display
+        displayPlaces(places);
+    </script>
+</body>
+</html>

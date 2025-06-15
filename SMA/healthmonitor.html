@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartCity: Health Monitoring</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #4a96e3, #4dc2f0);
+            color: #100f0f;
+            line-height: 1.6;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: rgba(225, 229, 225, 0.904);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #296106;
+        }
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            margin-left: 1rem;
+        }
+        h1, h2 {
+            color: #096538;
+        }
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+            background: rgba(247, 249, 247, 0.516);
+            margin-bottom: 2rem;
+        }
+        .vital-signs {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .vital-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .vital-item {
+            background-color: #f0f0f0;
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .insights {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .insight-item {
+            background-color: #e6ffe6;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+        .cta-button {
+            background-color: #2db082;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #6ad498;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 3rem;
+        }
+        #updateModal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 8px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: #0c0c0c;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">SmartCity Health Monitor</div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1>Health Monitoring</h1>
+            <p>Track your vital signs and get AI-powered health insights</p>
+        </section>
+
+        <section class="vital-signs">
+            <h2>Your Vital Signs</h2>
+            <div class="vital-grid">
+                <div class="vital-item">
+                    <h3>Heart Rate</h3>
+                    <p id="heartRate">72 bpm</p>
+                </div>
+                <div class="vital-item">
+                    <h3>Blood Pressure</h3>
+                    <p id="bloodPressure">120/80 mmHg</p>
+                </div>
+                <div class="vital-item">
+                    <h3>Body Temperature</h3>
+                    <p id="bodyTemp">98.6 °F</p>
+                </div>
+                <div class="vital-item">
+                    <h3>Oxygen Saturation</h3>
+                    <p id="oxygenSat">98%</p>
+                </div>
+            </div>
+            <button id="updateVitals" class="cta-button" style="margin-top: 1rem;">Update Vitals</button>
+        </section>
+
+        <section class="insights">
+            <h2>AI-Powered Health Insights</h2>
+            <div id="insightsList">
+                <div class="insight-item">
+                    <h3>Healthy Heart Rate</h3>
+                    <p>Your heart rate is within the normal range. Keep up the good work!</p>
+                </div>
+                <div class="insight-item">
+                    <h3>Optimal Blood Pressure</h3>
+                    <p>Your blood pressure is in the healthy range. Continue maintaining a balanced diet and regular exercise.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 SmartCity Health Monitoring. All rights reserved.</p>
+    </footer>
+
+    <div id="updateModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Update Your Vitals</h2>
+            <form id="updateForm">
+                <div class="form-group">
+                    <label for="newHeartRate">Heart Rate (bpm):</label>
+                    <input type="number" id="newHeartRate" required>
+                </div>
+                <div class="form-group">
+                    <label for="newBPSystolic">Blood Pressure (Systolic):</label>
+                    <input type="number" id="newBPSystolic" required>
+                </div>
+                <div class="form-group">
+                    <label for="newBPDiastolic">Blood Pressure (Diastolic):</label>
+                    <input type="number" id="newBPDiastolic" required>
+                </div>
+                <div class="form-group">
+                    <label for="newBodyTemp">Body Temperature (°F):</label>
+                    <input type="number" id="newBodyTemp" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="newOxygenSat">Oxygen Saturation (%):</label>
+                    <input type="number" id="newOxygenSat" required>
+                </div>
+                <button type="submit" class="cta-button">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const updateVitalsBtn = document.getElementById('updateVitals');
+            const updateModal = document.getElementById('updateModal');
+            const closeBtn = document.getElementsByClassName('close')[0];
+            const updateForm = document.getElementById('updateForm');
+
+            updateVitalsBtn.onclick = function() {
+                updateModal.style.display = 'block';
+            }
+
+            closeBtn.onclick = function() {
+                updateModal.style.display = 'none';
+            }
+
+            window.onclick = function(event) {
+                if (event.target == updateModal) {
+                    updateModal.style.display = 'none';
+                }
+            }
+
+            updateForm.onsubmit = function(e) {
+                e.preventDefault();
+                const heartRate = document.getElementById('newHeartRate').value;
+                const bpSystolic = document.getElementById('newBPSystolic').value;
+                const bpDiastolic = document.getElementById('newBPDiastolic').value;
+                const bodyTemp = document.getElementById('newBodyTemp').value;
+                const oxygenSat = document.getElementById('newOxygenSat').value;
+
+                // Update vital signs
+                document.getElementById('heartRate').textContent = '${heartRate} bpm';
+                document.getElementById('bloodPressure').textContent = '${bpSystolic}/${bpDiastolic} mmHg';
+                document.getElementById('bodyTemp').textContent = '${bodyTemp} °F';
+                document.getElementById('oxygenSat').textContent = '${oxygenSat}%';
+
+                // Generate new AI insights (simplified for demo)
+                const insightsList = document.getElementById('insightsList');
+                insightsList.innerHTML = ''; // Clear previous insights
+
+                if (heartRate > 100) {
+                    addInsight('Elevated Heart Rate', 'Your heart rate is above normal. Consider reducing caffeine intake and managing stress.');
+                } else if (heartRate < 60) {
+                    addInsight('Low Heart Rate', 'Your heart rate is below normal. This could be due to good fitness or medication. Consult your doctor if concerned.');
+                }
+
+                if (bpSystolic > 130 || bpDiastolic > 80) {
+                    addInsight('Elevated Blood Pressure', 'Your blood pressure is higher than optimal. Consider reducing salt intake and increasing physical activity.');
+                }
+
+                if (bodyTemp > 99.5) {
+                    addInsight('Slight Fever', 'Your body temperature is slightly elevated. Monitor for other symptoms and rest.');
+                }
+
+                if (oxygenSat < 95) {
+                    addInsight('Low Oxygen Saturation', 'Your oxygen saturation is below normal. If this persists, consult a healthcare professional.');
+                }
+
+                updateModal.style.display = 'none';
+                updateForm.reset();
+            }
+
+            function addInsight(title, content) {
+                const insightDiv = document.createElement('div');
+                insightDiv.className = 'insight-item';
+                insightDiv.innerHTML = '<h3>${title}</h3><p>${content}</p>';
+                insightsList.appendChild(insightDiv);
+            }
+        });
+    </script>
+</body>
+</html>

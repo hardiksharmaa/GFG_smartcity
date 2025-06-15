@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartCity: Building the Future</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #1966cce2, #34a7b9);
+            color: rgb(244, 240, 240);
+            line-height: 1.6;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        nav {
+            background-color: rgba(54, 76, 76, 0.5);
+            padding: 1rem 0;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        .nav-buttons button {
+            background-color: #f98538;
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1rem;
+            margin-left: 0.5rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .nav-buttons button:hover {
+            background-color: #2ea134;
+        }
+        header {
+            padding: 2rem 0;
+            font-style: initial;
+            font-size: larger;
+            color: #eb8b46;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .feature-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .intro-text {
+            background-color: rgba(206, 187, 187, 0.2);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 3rem;
+        }
+        footer {
+            background-color: #57668d;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 3rem;
+        }
+        .search-container {
+            margin-bottom: 2rem;
+        }
+        .search-bar {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        .search-bar::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .search-bar:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        #search-results {
+            background-color: white;
+            border-radius: 8px;
+            margin-top: 10px;
+            padding: 10px;
+            display: none;
+        }
+        #search-results p {
+            color: #333;
+            margin: 5px 0;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 8px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .modal-content h2 {
+            color: #333;
+        }
+        .modal-content p {
+            color: #666;
+        }
+        .feature-btn {
+            background-color: #f59e0b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+        .feature-btn:hover {
+            background-color: #d97706;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container nav-container">
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="nav-buttons">
+                <a href="login.html"><button id="loginBtn">Login</button></a>
+                <a href="signup.html"><button id="signupBtn">Sign Up</button></a>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <h1>SmartCity: Building the Future</h1>
+        </div>
+    </header>
+    
+    <main class="container">
+        <div class="search-container">
+            <input type="text" id="search-bar" class="search-bar" placeholder="Search SmartCity features...">
+            <div id="search-results"></div>
+        </div>
+
+        <section>
+            <h2>Experience the Connected City</h2>
+            <div class="feature-grid">
+                <div class="feature-card" data-feature="Connected Infrastructure">
+                    <div class="feature-icon">📡</div>
+                    <h3>Know Your City</h3>
+                    <p>Discover the best places in SmartCity</p>
+                    <!-- <button class="feature-btn" data-feature="Connected Infrastructure">Explore Now</button> -->
+                    <a href="kyc.html"><button class="feature-btn" data-feature="Connected Infrastructure">Explore Now</button></a>
+                </div>
+                <div class="feature-card" data-feature="Data-Driven Decisions">
+                    <div class="feature-icon">📊</div>
+                    <h3>Smart Medical Assistant</h3>
+                    <p>AI-powered health recommendations</p>
+                    <a href="medical.html"><button class="feature-btn" data-feature="Data-Driven Decisions">Get Assistance</button></a>
+                </div>
+                <div class="feature-card" data-feature="Innovation Hub">
+                    <div class="feature-icon">💡</div>
+                    <h3>EV Charging Station</h3>
+                    <p>Find nearby charging points</p>
+                    <a href="ev.html"><button class="feature-btn" data-feature="Innovation Hub">Locate Stations</button></a>
+                </div>
+                <div class="feature-card" data-feature="Citizen Engagement">
+                    <div class="feature-icon">👥</div>
+                    <h3>Community Engagement</h3>
+                    <p>Participate in local initiatives</p>
+                    <a href="community.html"><button class="feature-btn" data-feature="Citizen Engagement">Get Involved</button></a>
+                </div>
+                <div class="feature-card" data-feature="Smart Transportation">
+                    <div class="feature-icon">🚗</div>
+                    <h3>Smart Parking</h3>
+                    <p>Find and reserve parking spots</p>
+                    <a href="parking.html"><button class="feature-btn" data-feature="Smart Transportation">Find Parking</button></a>
+                </div>
+                <div class="feature-card" data-feature="Energy Efficiency">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Disaster Management</h3>
+                    <p>Stay informed and prepared</p>
+                    <a href="disaster.html"><button class="feature-btn" data-feature="Energy Efficiency">Safety Info</button></a>
+                </div>
+                <div class="feature-card" data-feature="Public Safety">
+                    <div class="feature-icon">🛡</div>
+                    <h3>Smart SOS</h3>
+                    <p>Quick emergency assistance</p>
+                    <a href="sos.html"><button class="feature-btn" data-feature="Public Safety">Emergency Help</button></a>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Discover SmartCity</h2>
+            <div class="intro-text">
+                <p>
+                    Welcome to the future of urban living. Our smart city uses technology to improve the quality of life for all residents. From efficient transportation to sustainable energy solutions, we're building a connected community that works for everyone.
+                </p>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 SmartCity Initiative. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="featureModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <p id="modalContent"></p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchBar = document.getElementById('search-bar');
+            const searchResults = document.getElementById('search-results');
+            const modal = document.getElementById('featureModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalContent = document.getElementById('modalContent');
+            const closeBtn = document.getElementsByClassName('close')[0];
+            const loginBtn = document.getElementById('loginBtn');
+            const signupBtn = document.getElementById('signupBtn');
+            const featureButtons = document.querySelectorAll('.feature-btn');
+            
+            const features = [
+                'Connected Infrastructure',
+                'Data-Driven Decisions',
+                'Innovation Hub',
+                'Citizen Engagement',
+                'Smart Transportation',
+                'Energy Efficiency',
+                'Public Safety'
+            ];
+
+            const featureDescriptions = {
+                'Connected Infrastructure': 'Discover the best places in SmartCity with our Know Your City feature. Find top-rated restaurants, shopping centers, and attractions based on user reviews and preferences.',
+                'Data-Driven Decisions': 'Get personalized health recommendations and find nearby medical facilities with our Smart Medical Assistant. AI-powered insights help you make informed decisions about your well-being.',
+                'Innovation Hub': 'Locate the nearest EV charging stations and plan your route efficiently. Our system provides real-time information on availability and charging speeds.',
+                'Citizen Engagement': 'Participate in local initiatives, vote on community projects, and stay informed about city developments. Your voice matters in shaping the future of SmartCity.',
+                'Smart Transportation': 'Find and reserve parking spots in advance. Our Smart Parking system helps reduce traffic congestion and saves you time and fuel.',
+                'Energy Efficiency': 'Stay prepared with our Disaster Management system. Receive real-time alerts, evacuation routes, and safety information during emergencies.',
+                'Public Safety': 'Quick access to emergency services with our Smart SOS feature. One-touch activation sends your location to the nearest response team for immediate assistance.'
+            };
+
+            searchBar.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                if (searchTerm.length > 2) {
+                    const matchedFeatures = features.filter(feature => 
+                        feature.toLowerCase().includes(searchTerm)
+                    );
+                    
+                    if (matchedFeatures.length > 0) {
+                        searchResults.innerHTML = matchedFeatures.map(feature => 
+                            <p>${feature}</p>
+                        ).join('');
+                        searchResults.style.display = 'block';
+                    } else {
+                        searchResults.innerHTML = '<p>No matching features found.</p>';
+                        searchResults.style.display = 'block';
+                    }
+                } else {
+                    searchResults.style.display = 'none';
+                }
+            });
+
+            document.addEventListener('click', function(event) {
+                if (!searchBar.contains(event.target) && !searchResults.contains(event.target)) {
+                    searchResults.style.display = 'none';
+                }
+            });
+
+            featureButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const feature = this.getAttribute('data-feature');
+                    modalTitle.textContent = feature;
+                    modalContent.textContent = featureDescriptions[feature] || 'Feature coming soon.';
+                    modal.style.display = 'block';
+                });
+            });
+
+            closeBtn.onclick = function() {
+                modal.style.display = 'none';
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            }
+
+            loginBtn.addEventListener('click', function() {
+                alert('Login functionality coming soon!');
+            });
+
+            signupBtn.addEventListener('click', function() {
+                alert('Sign up functionality coming soon!');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EV Charging Station Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2ab857;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #2ab857;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #239a49;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Payment for EV Charging</h1>
+        <form id="paymentForm">
+            <div class="form-group">
+                <label for="cardNumber">Card Number:</label>
+                <input type="text" id="cardNumber" required placeholder="1234 5678 9012 3456">
+            </div>
+            <div class="form-group">
+                <label for="cardName">Name on Card:</label>
+                <input type="text" id="cardName" required placeholder="John Doe">
+            </div>
+            <div class="form-group">
+                <label for="expiryDate">Expiry Date:</label>
+                <input type="text" id="expiryDate" required placeholder="MM/YY">
+            </div>
+            <div class="form-group">
+                <label for="cvv">CVV:</label>
+                <input type="number" id="cvv" required placeholder="123">
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" required placeholder="0.00" step="0.01">
+            </div>
+            <button type="submit" class="btn">Pay Now</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would normally process the payment
+            // For this example, we'll just show an alert
+            alert('Payment processed successfully!');
+        });
+    </script>
+</body>
+</html>

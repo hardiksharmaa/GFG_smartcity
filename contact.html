@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartCity: Contact Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #5491f4, #42b0c1);
+            color: white;
+            line-height: 1.6;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        nav {
+            background-color: rgba(249, 243, 243, 0.258);
+            padding: 1rem 0;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        header {
+            padding: 2rem 0;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .developer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .developer-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .developer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .developer-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .developer-info a {
+            color: #f0f0f0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .developer-info a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+        footer {
+            background-color: #1d4ed8;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container nav-container">
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <h1>Contact Our Team</h1>
+            <p>Get in touch with the developers behind SmartCity</p>
+        </div>
+    </header>
+    
+    <main class="container">
+        <div class="developer-grid">
+            <div class="developer-card">
+                <div class="developer-icon">👩‍💻</div>
+                <h3>Ritik Singh</h3>
+                <div class="developer-info">
+                    <p>Email: <a href="mailto:alice.johnson@smartcity.com">singhritik4433@gmail.com</a></p>
+                    <p>GitHub: <a href="https://github.com/alicejohnson" target="_blank">@ritik</a></p>
+                    <p>LinkedIn: <a href="https://www.linkedin.com/in/alicejohnson" target="_blank">ritik</a></p>
+                </div>
+            </div>
+            <div class="developer-card">
+                <div class="developer-icon">👨‍💻</div>
+                <h3>Ayush Choudhary</h3>
+                <div class="developer-info">
+                    <p>Email: <a href="mailto:bob.smith@smartcity.com">ayushsairam157@gmail.com</a></p>
+                    <p>GitHub: <a href="https://github.com/bobsmith" target="_blank">@ayush</a></p>
+                    <p>LinkedIn: <a href="https://www.linkedin.com/in/bobsmith" target="_blank">ayush</a></p>
+                </div>
+            </div>
+            <div class="developer-card">
+                <div class="developer-icon">👩‍💻</div>
+                <h3>Purosotam Kumar</h3>
+                <div class="developer-info">
+                    <p>Email: <a href="mailto:carol.martinez@smartcity.com">kumarpurosotam506@gmail.com</a></p>
+                    <p>GitHub: <a href="https://github.com/carolmartinez" target="_blank">@puro</a></p>
+                    <p>LinkedIn: <a href="https://www.linkedin.com/in/carolmartinez" target="_blank">puro</a></p>
+                </div>
+            </div>
+            <div class="developer-card">
+                <div class="developer-icon">👨‍💻</div>
+                <h3>Kaushal Kumar</h3>
+                <div class="developer-info">
+                    <p>Email: <a href="mailto:david.lee@smartcity.com">kumarkaushal12384@gmail.com</a></p>
+                    <p>GitHub: <a href="https://github.com/davidlee" target="_blank">@kaushal</a></p>
+                    <p>LinkedIn: <a href="https://www.linkedin.com/in/davidlee" target="_blank">kaushal</a></p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 SmartCity Initiative. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

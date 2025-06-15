@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartCity: Smart Parking System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #3d8dd3, #22d3ee);
+            color: rgb(239, 232, 232);
+            line-height: 1.6;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        nav {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 1rem 0;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-links a {
+            color: rgb(220, 234, 238);
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        header {
+            padding: 2rem 0;
+            text-align: center;
+        }
+        h1, h2 {
+            margin-bottom: 1rem;
+        }
+        .parking-grid {
+            /* margin-left: 100px; */
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .parking-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .parking-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .parking-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .btn {
+            background-color: #d88b4f;
+            border: none;
+            color: rgb(247, 238, 238);
+            padding: 0.5rem 1rem;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1rem;
+            margin-top: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        #map {
+            height: 400px;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        footer {
+            background-color: #61acd4;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container nav-container">
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="#about">About</a>
+                <a href="#features">Features</a>
+                <a href="#map">Map</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <h1>SmartCity: Smart Parking System</h1>
+            <p>Find parking slots without wasting time. Hassle-free parking at your fingertips.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="about">
+            <h2>About Smart Parking</h2>
+            <p>Our Smart Parking system uses advanced sensors and real-time data to guide you to available parking spots quickly and efficiently. Say goodbye to circling blocks and wasting fuel searching for parking!</p>
+        </section>
+        <section id="features">
+            <h2>Key Features</h2>
+            <div class="parking-grid">
+                <div class="parking-card">
+                    <a style="text-decoration: none; color: aliceblue;" href="SPS/realtimeavailable.html"><div class="parking-icon">🚗</div>
+                    <h3>Real-time Availability</h3>
+                    <p>See available parking spots in real-time on our interactive map.</p>
+                </div></a>
+
+                <div class="parking-card">
+                    <a style="text-decoration: none; color: aliceblue;" href="SPS/payment.html"><div class="parking-icon">💳</div>
+                    <h3>Contactless Payment</h3>
+                    <p>Pay for parking easily and securely through our app or smart meters.</p>
+                </div></a>
+
+                <div class="parking-card">
+                    <a style="text-decoration: none; color: aliceblue;" href="SPS/notification.html"><div class="parking-icon">🔔</div>
+                    <h3>Notifications</h3>
+                    <p>Receive alerts when your parking time is about to expire.</p>
+                </div></a>
+            </div>
+        </section>
+
+        <section id="map">
+            <h2>Parking Map</h2>
+            <div id="parking-map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3410.7263993671645!2d75.7025685753537!3d31.25599656015658!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a5f5e9c489cf3%3A0x4049a5409d53c300!2sLovely%20Professional%20University!5e0!3m2!1sen!2sin!4v1724919959932!5m2!1sen!2sin" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <button class="btn" id="find-parking">Find Nearest Parking</button>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>Having trouble with parking or have suggestions? We're here to help!</p>
+            <button class="btn" id="contact-support">Contact Support</button>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 SmartCity Initiative. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const findParkingBtn = document.getElementById('find-parking');
+            const contactSupportBtn = document.getElementById('contact-support');
+
+            findParkingBtn.addEventListener('click', function() {
+                alert('Searching for the nearest available parking spot...');
+            });
+
+            contactSupportBtn.addEventListener('click', function() {
+                alert('Opening support chat...');
+            });
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

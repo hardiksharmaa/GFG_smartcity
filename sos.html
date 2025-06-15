@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart SOS: Emergency Assistance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #2c93d8, #6ec5d6);
+            color: rgb(244, 225, 225);
+            line-height: 1.6;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        nav {
+            background-color: rgba(243, 241, 241, 0.437);
+            padding: 1rem 0;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        .nav-buttons button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1rem;
+            margin-left: 0.5rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .nav-buttons button:hover {
+            background-color: #45a049;
+        }
+        header {
+            padding: 2rem 0;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .sos-button {
+            background-color: #f43535;
+            color: white;
+            border: none;
+            padding: 2rem 4rem;
+            font-size: 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            margin: 2rem 0;
+        }
+        .sos-button:hover {
+            background-color: #d30606;
+            transform: scale(1.05);
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .feature-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        }
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .intro-text {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 3rem;
+        }
+        footer {
+            background-color: #333;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 3rem;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(241, 231, 231, 0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #fff8f8;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 8px;
+            color: #333;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container nav-container">
+            <!-- <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </div> -->
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <h1>Smart SOS: Emergency Assistance</h1>
+            <p>Quick access to emergency services at your fingertips</p>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section>
+            <button id="sosButton" class="sos-button">SOS</button>
+        </section>
+
+        <section>
+            <h2>Smart SOS Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚨</div>
+                    <h3>Quick Notification</h3>
+                    <p>Instantly notify police and fire department</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📍</div>
+                    <h3>Real-time Location</h3>
+                    <p>Accurate location tracking for faster response</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚑</div>
+                    <h3>Emergency Alerts</h3>
+                    <p>Receive important updates and instructions</p>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>About Smart SOS</h2>
+            <div class="intro-text">
+                <p>
+                    Smart SOS systems allow citizens to quickly notify the police and fire department in case of emergencies. This system provides real-time location tracking and emergency alerts to ensure help arrives quickly and efficiently. With just one tap, you can summon assistance and feel secure knowing that help is on the way.
+                </p>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Smart SOS Initiative. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="sosModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Emergency Alert Sent</h2>
+            <p>Your location has been shared with emergency services. Help is on the way.</p>
+            <p>Please stay calm and remain in a safe location if possible.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sosButton = document.getElementById('sosButton');
+            const sosModal = document.getElementById('sosModal');
+            const closeBtn = document.getElementsByClassName('close')[0];
+            const loginBtn = document.getElementById('loginBtn');
+            const signupBtn = document.getElementById('signupBtn');
+
+            sosButton.addEventListener('click', function() {
+                sosModal.style.display = 'block';
+                // In a real application, this would trigger an actual emergency alert
+                console.log('Emergency alert triggered');
+            });
+
+            closeBtn.onclick = function() {
+                sosModal.style.display = 'none';
+            }
+
+            window.onclick = function(event) {
+                if (event.target == sosModal) {
+                    sosModal.style.display = 'none';
+                }
+            }
+
+            loginBtn.addEventListener('click', function() {
+                alert('Login functionality coming soon!');
+            });
+
+            signupBtn.addEventListener('click', function() {
+                alert('Sign up functionality coming soon!');
+            });
+        });
+    </script>
+</body>
+</html>

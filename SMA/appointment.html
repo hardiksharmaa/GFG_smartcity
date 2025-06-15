@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartCity: AI-Powered Appointment Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4facfe;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+            background: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            border-radius: 10px;
+        }
+        .booking-form {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        input, select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .cta-button {
+            background-color: #4facfe;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #3d8bfe;
+        }
+        #aiAssistant {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4facfe;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        #aiAssistant:hover {
+            transform: scale(1.1);
+        }
+        #chatModal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .chat-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 8px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: #000;
+        }
+        #chatMessages {
+            height: 300px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        #userInput {
+            width: 80%;
+            padding: 10px;
+            margin-right: 10px;
+        }
+        #sendMessage {
+            padding: 10px;
+            background-color: #4facfe;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">SmartCity Medical</div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1>AI-Powered Appointment Booking</h1>
+            <p>Schedule appointments with doctors instantly using AI</p>
+        </section>
+
+        <section class="booking-form">
+            <h2>Book Your Appointment</h2>
+            <form id="appointmentForm">
+                <div class="form-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="department">Department:</label>
+                    <select id="department" name="department" required>
+                        <option value="">Select a department</option>
+                        <option value="general">General Medicine</option>
+                        <option value="cardiology">Cardiology</option>
+                        <option value="neurology">Neurology</option>
+                        <option value="orthopedics">Orthopedics</option>
+                        <option value="pediatrics">Pediatrics</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date">Preferred Date:</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">Preferred Time:</label>
+                    <input type="time" id="time" name="time" required>
+                </div>
+                <button type="submit" class="cta-button">Book Appointment</button>
+            </form>
+        </section>
+    </main>
+
+    <div id="aiAssistant">AI</div>
+
+    <div id="chatModal" class="modal">
+        <div class="chat-content">
+            <span class="close">&times;</span>
+            <h2>AI Booking Assistant</h2>
+            <div id="chatMessages"></div>
+            <input type="text" id="userInput" placeholder="Type your message...">
+            <button id="sendMessage">Send</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const aiAssistant = document.getElementById('aiAssistant');
+            const chatModal = document.getElementById('chatModal');
+            const closeBtn = document.getElementsByClassName('close')[0];
+            const sendButton = document.getElementById('sendMessage');
+            const userInput = document.getElementById('userInput');
+            const chatMessages = document.getElementById('chatMessages');
+            const appointmentForm = document.getElementById('appointmentForm');
+
+            aiAssistant.onclick = function() {
+                chatModal.style.display = "block";
+                chatMessages.innerHTML += '<p><strong>AI:</strong> Hello! How can I assist you with booking your appointment today?</p>';
+            }
+
+            closeBtn.onclick = function() {
+                chatModal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == chatModal) {
+                    chatModal.style.display = "none";
+                }
+            }
+
+            sendButton.onclick = sendMessage;
+            userInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            function sendMessage() {
+                const message = userInput.value;
+                if (message.trim() !== '') {
+                    chatMessages.innerHTML += <p><strong>You:</strong> ${message}</p>;
+                    userInput.value = '';
+                    
+                    // Simulated AI response
+                    setTimeout(() => {
+                        let response = "I'm here to help you book an appointment. Could you please provide more details about the type of appointment you need?";
+                        if (message.toLowerCase().includes('department')) {
+                            response = "We have several departments available, including General Medicine, Cardiology, Neurology, Orthopedics, and Pediatrics. Which department would you like to book an appointment with?";
+                        } else if (message.toLowerCase().includes('date') || message.toLowerCase().includes('time')) {
+                            response = "Certainly! I can help you find available time slots. What date and time would be most convenient for you?";
+                        }
+                        chatMessages.innerHTML += <p><strong>AI:</strong> ${response}</p>;
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    }, 1000);
+                }
+            }
+
+            appointmentForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(appointmentForm);
+                let appointmentDetails = '';
+                for (let [key, value] of formData.entries()) {
+                    appointmentDetails += '${key}: ${value}\n';
+                }
+                alert('Appointment booked successfully!\n\nDetails:\n' + appointmentDetails);
+                appointmentForm.reset();
+            });
+        });
+    </script>
+</body>
+</html>
